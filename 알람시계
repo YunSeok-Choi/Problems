@@ -1,0 +1,28 @@
+package 브3;
+
+import java.util.Scanner;
+
+public class 알림시계 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int h, m;
+
+		h = sc.nextInt();
+		m = sc.nextInt();
+
+		if (m <= 59 && m >= 45)
+			m -= 45;
+		else if (m < 45) {
+			m = m - 45 + 60;
+			if (h == 0)
+				h = 23;
+			else
+				h--;
+		}
+		System.out.println(h + " " + m);
+		sc.close();
+	}
+}
