@@ -1,0 +1,21 @@
+package 브3;
+
+import java.util.Scanner;
+
+public class 네수 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String a, b, c, d;
+		
+		a = sc.next();
+		b = sc.next();
+		c = sc.next();
+		d = sc.next();
+
+		System.out.println(Long.valueOf(a += b) + Long.valueOf(c += d));
+
+	}
+
+}
