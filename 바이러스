@@ -1,0 +1,37 @@
+package dfs;
+
+import java.util.*;
+
+public class 바이러스 {
+	public static int n, m, sum = 0;
+	public static int map[][] = new int[1001][1001];
+	public static boolean[] visited = new boolean[1001];
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		n = sc.nextInt();
+		m = sc.nextInt();
+
+		for (int i = 0; i < m; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			map[a][b] = 1;
+			map[b][a] = 1;
+		}
+
+		dfs(1);
+		System.out.println(sum - 1);
+	}
+
+	public static void dfs(int x) {
+
+		visited[x] = true;
+		sum++;
+		for (int i = 1; i <= n; i++) {
+			if (map[x][i] == 1 && !visited[i])
+				dfs(i);
+		}
+	}
+}
