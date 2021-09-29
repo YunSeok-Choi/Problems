@@ -1,0 +1,64 @@
+package dfs;
+
+import java.util.*;
+
+public class 섬의_개수 {
+	public static int n, m;
+	public static boolean[][] visit;
+	public static int[][] map;
+	public static int[] dy = { -1, 1, 0, 0, -1, -1, 1, 1 };
+	public static int[] dx = { 0, 0, 1, -1, -1, 1, -1, 1 };
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			n = sc.nextInt();
+			m = sc.nextInt();
+
+			if (n == 0 && m == 0)
+				break;
+
+			int sum = 0;
+
+			map = new int[m][n];
+			visit = new boolean[m][n];
+
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					map[i][j] = sc.nextInt();
+				}
+			}
+
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					if (map[i][j] == 1 && !visit[i][j]) {
+						dfs(i,j);
+						sum++;
+					}
+				}
+			}
+
+			System.out.println(sum);
+		}
+
+	}
+
+	public static void dfs(int x, int y) {
+		visit[x][y] = true;
+
+		for (int i = 0; i < dy.length; i++) {
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+
+			if (nx >= 0 && ny >= 0 && nx < m && ny < n) {
+				if (map[nx][ny] == 1 && !visit[nx][ny]) {
+					dfs(nx, ny);
+				}
+			}
+		}
+	}
+
+}
