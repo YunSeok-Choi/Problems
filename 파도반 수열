@@ -1,0 +1,37 @@
+package dynamic;
+
+import java.util.*;
+
+public class Main {
+	public static long[] dp = new long[101];
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+
+		dp[1] = 1;
+		dp[2] = 1;
+		dp[3] = 1;
+
+		for (int i = 4; i < dp.length; i++)
+			dp[i] = -1;
+
+		for (int i = 0; i < t; i++) {
+
+			int n = sc.nextInt();
+			System.out.println(number(n));
+
+		}
+
+	}
+
+	public static long number(int n) {
+
+		if (dp[n] == -1)
+			return dp[n] = number(n - 2) + number(n - 3);
+
+		return dp[n];
+	}
+
+}
