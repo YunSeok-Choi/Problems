@@ -19,9 +19,12 @@ public class 방번호 {
 			else
 				number[Integer.parseInt(b[i])]++;
 		}
-		number[6] /= 2;
+		if (number[6] % 2 == 0)
+			number[6] /= 2;
+		else
+			number[6] = (number[6] / 2) + 1;
 
-		for (int i = 1; i < 9; i++) {
+		for (int i = 0; i < 9; i++) {
 			if (number[i] > sum)
 				sum = number[i];
 		}
