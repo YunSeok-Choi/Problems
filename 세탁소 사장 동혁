@@ -1,0 +1,24 @@
+package 문제;
+
+import java.util.Scanner;
+
+public class 세탁소_사장_동혁 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int num, money;
+
+		num = sc.nextInt();
+
+		for (int i = 0; i < num; i++) {
+			money = sc.nextInt();
+			int a = money / 25;
+			int b = (money % 25) / 10;
+			int c = ((money % 25) % 10) / 5;
+			int d = (((money % 25) % 10) % 5) / 1;
+			System.out.println(a + " " + b + " " + c + " " + d);
+		}
+	}
+
+}

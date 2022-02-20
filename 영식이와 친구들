@@ -1,0 +1,43 @@
+package 브2;
+
+import java.util.Scanner;
+
+public class 영식이와_친구들 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int N, M, L, sum = 0, a = 0;
+
+		N = sc.nextInt();
+		M = sc.nextInt();
+		L = sc.nextInt();
+
+		int arr[] = new int[N];
+		int cnt = 0;
+		int index = 0;
+		while (true) {
+			arr[index]++;
+			if (arr[index] == M)
+				break;
+
+			if (arr[index] % 2 == 0) {
+				if (index + L >= N) {
+					index = L - N + index;
+				} else {
+					index += L;
+				}
+			} else if (arr[index] % 2 == 1) {
+				if (index - L < 0) {
+					index = N - L + index;
+				} else
+					index -= L;
+			}
+			cnt++;
+		}
+		System.out.println(cnt);
+
+	}
+
+}

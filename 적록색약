@@ -1,0 +1,91 @@
+package dfs;
+
+import java.util.Scanner;
+
+public class 적록색약 {
+	private static char[][] map;
+	private static boolean[][] visit;
+	private static int[] dy = { -1, 1, 0, 0 };
+	private static int[] dx = { 0, 0, -1, 1 };
+	private static int n, sum = 0, sumG = 0;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		sc.nextLine();
+
+		map = new char[n][n];
+		visit = new boolean[n][n];
+
+		for (int i = 0; i < n; i++) {
+			String RGB = sc.next();
+			for (int j = 0; j < n; j++) {
+				map[i][j] = RGB.charAt(j);
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (map[i][j] == 'R' && !visit[i][j]) {
+					dfs(i, j, 'R');
+					sum++;
+				} else if (map[i][j] == 'G' && !visit[i][j]) {
+					dfs(i, j, 'G');
+					sum++;
+				} else if (map[i][j] == 'B' && !visit[i][j]) {
+					dfs(i, j, 'B');
+					sum++;
+				}
+			}
+		}
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < n; j++)
+				visit[i][j] = false;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if ((map[i][j] == 'R' || map[i][j] == 'G') && !visit[i][j]) {
+					dfs(i, j, 'D');
+					sumG++;
+				} else if (map[i][j] == 'B' && !visit[i][j]) {
+					dfs(i, j, 'B');
+					sumG++;
+				}
+			}
+		}
+		System.out.println(sum + " " + sumG);
+
+	}
+
+	public static void dfs(int x, int y, char c) {
+		visit[x][y] = true;
+
+		for (int i = 0; i < 4; i++) {
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+
+			if (nx >= 0 && ny >= 0 && nx < n && ny < n) {
+				switch (c) {
+				case 'D':
+					if ((map[nx][ny] == 'R' || map[nx][ny] == 'G') && !visit[nx][ny])
+						dfs(nx, ny, 'D');
+					break;
+				case 'R':
+					if (map[nx][ny] == 'R' && !visit[nx][ny])
+						dfs(nx, ny, 'R');
+					break;
+				case 'G':
+					if (map[nx][ny] == 'G' && !visit[nx][ny])
+						dfs(nx, ny, 'G');
+					break;
+				case 'B':
+					if (map[nx][ny] == 'B' && !visit[nx][ny])
+						dfs(nx, ny, 'B');
+					break;
+				}
+			}
+		}
+	}
+
+}

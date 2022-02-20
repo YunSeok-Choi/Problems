@@ -1,0 +1,49 @@
+package 문제;
+
+import java.util.*;
+
+public class 숫자게임 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int x, sum = 0, max[];
+		max = new int[4];
+		Scanner sc = new Scanner(System.in);
+		Random r = new Random();
+
+		System.out.println("숫자 게임을 시작합니다.");
+		System.out.print("참여 인원 수를 입력하세요 : ");
+		x = sc.nextInt();
+
+		int[][] a = new int[x][5];
+
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < 5; j++) {
+				a[i][j] = r.nextInt(10) + 1;
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.print("\n");
+		}
+
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < 5; j++)
+				for (int k = 0; k < 5; k++)
+					for (int z = 0; z < 5; z++) {
+						if (j != k && k != z && j != z)
+							if (z == 0 || k == 0 || j == 0)
+								max[i + 1] = (a[i][j] + a[i][k] + a[i][z]) % 10;
+							else if (max[i + 1] < (a[i][j] + a[i][k] + a[i][z]) % 10)
+								max[i + 1] = (a[i][j] + a[i][k] + a[i][z]) % 10;
+					}
+			System.out.print(max[i + 1] + " ");
+		}
+		System.out.print("\n");
+		for (int i = 0; i < x; i++)
+			if (sum < max[i + 1])
+				sum = max[i + 1];
+		System.out.println("1등은 " + sum + "입니다.");
+
+	}
+
+}

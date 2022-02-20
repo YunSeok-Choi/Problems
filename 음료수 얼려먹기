@@ -1,0 +1,53 @@
+package dfs;
+
+import java.util.*;
+
+public class 음료수얼려먹기 {
+	public static int n, m;
+	public static int[][] map = new int[1000][1000];
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		sc.nextLine();
+		
+		int result = 0;
+
+		for (int i = 0; i < n; i++) {
+			String str = sc.nextLine();
+			for (int j = 0; j < m; j++) {
+				map[i][j] = str.charAt(j) - '0';
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (dfs(i, j)) {
+					result++;
+				}
+			}
+		}
+
+		System.out.println(result);
+
+		sc.close();
+	}
+
+	private static boolean dfs(int x, int y) {
+		// TODO Auto-generated method stub
+		if (x <= -1 || x >= n || y <= -1 || y >= m)
+			return false;
+
+		if (map[x][y] == 0) {
+			map[x][y] = 1;
+			dfs(x - 1, y);
+			dfs(x, y - 1);
+			dfs(x + 1, y);
+			dfs(x, y + 1);
+			return true;
+		}
+		return false;
+	}
+
+}

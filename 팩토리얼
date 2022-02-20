@@ -1,0 +1,21 @@
+package 재귀;
+
+import java.util.*;
+
+public class Main {
+		
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int sum = fack(n);
+		System.out.println(sum);
+		
+	}
+	public static int fack(int n) {
+		if(n <= 1) return 1;
+		return n* fack(n-1);
+		
+	}
+
+}

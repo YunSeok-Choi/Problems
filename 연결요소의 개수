@@ -1,0 +1,47 @@
+package dfs;
+
+import java.util.*;
+
+public class 연결요소의개수 {
+	public static int n, m;
+	public static boolean[] visit = new boolean[1001];
+	public static int[][] map = new int[1001][1001];
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		m = sc.nextInt();
+		int sum = 0;
+		
+		for (int i = 0; i < m; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			map[a][b] = 1;
+			map[b][a] = 1;
+		}
+
+		for (int i = 1; i <= n; i++) {
+			if (!visit[i]) {
+				dfs(i);
+				sum++;
+			}
+		}
+
+		System.out.println(sum);
+
+	}
+
+	public static void dfs(int i) {
+		if (visit[i])
+			return;
+
+		visit[i] = true;
+
+		for (int j = 1; j <=n; j++) {
+			if (map[i][j] == 1 && !visit[j]) {
+				dfs(j);
+			}
+		}
+	}
+}

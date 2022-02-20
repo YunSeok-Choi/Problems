@@ -1,0 +1,19 @@
+package 문제;
+
+import java.util.Scanner;
+
+public class 중앙이동_알고리즘 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        
+        long dot = 1 + (long)Math.pow(2, n);
+        System.out.println(dot * dot);
+
+	}
+
+}

@@ -1,0 +1,63 @@
+package dfs_bfs;
+
+import java.util.*;
+
+public class Main {
+	static boolean visit[] = new boolean[1001];
+	static int map[][] = new int[1001][1001];
+	static int n;
+	static int m;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		m = sc.nextInt();
+
+		for (int i = 0; i < visit.length; i++)
+			visit[i] = false;
+
+		int v = sc.nextInt();
+
+		for (int i = 0; i < m; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			map[a][b] = 1;
+			map[b][a] = 1;
+		}
+
+		dfs(v);
+
+		for (int i = 0; i < visit.length; i++)
+			visit[i] = false;
+		System.out.println();
+
+		bfs(v);
+	}
+
+	private static void dfs(int i) {
+		visit[i] = true;
+		System.out.print(i + " ");
+		for (int j = 1; j <= n; j++) {
+			if (map[i][j] == 1 && !visit[j]) {
+				dfs(j);
+			}
+		}
+	}
+
+	private static void bfs(int i) {
+		Queue<Integer> q = new LinkedList<>();
+		q.add(i);
+		visit[i] = true;
+		while (!q.isEmpty()) {
+			i = q.poll();
+			System.out.print(i + " ");
+			for (int j = 1; j <= n; j++) {
+				if (map[i][j] == 1 && !visit[j]) {
+					q.add(j);
+					visit[j] = true;
+				}
+			}
+		}
+	}
+
+}

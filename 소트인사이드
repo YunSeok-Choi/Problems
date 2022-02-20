@@ -1,0 +1,72 @@
+package sort;
+
+import java.io.*;
+
+public class Main {
+	public static int[] s;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		String a = br.readLine();
+
+		int[] x = new int[a.length()];
+		s = new int[a.length()];
+
+		for (int i = 0; i < a.length(); i++)
+			x[i] = a.charAt(i) - '0';
+
+		merge_sort(x, 0, a.length() - 1);
+
+		for (int i = x.length - 1; i >= 0; i--)
+			bw.write(x[i] + "");
+
+		bw.flush();
+		bw.close();
+	}
+
+	public static void merge_sort(int[] a, int l, int r) {
+		if (l < r) {
+			int m = (l + r) / 2;
+
+			merge_sort(a, l, m);
+			merge_sort(a, m + 1, r);
+
+			merge(a, l, m, r);
+		}
+	}
+
+	public static void merge(int[] a, int left, int mid, int right) {
+		int l = left, k = left, m = mid + 1;
+
+		while (l <= mid && m <= right) {
+			if (a[l] > a[m]) {
+				s[k] = a[m];
+				m++;
+			} else {
+				s[k] = a[l];
+				l++;
+			}
+			k++;
+		}
+
+		if (l > mid) {
+			for (int i = m; i <= right; i++) {
+				s[k] = a[i];
+				k++;
+			}
+		} else {
+			for (int i = l; i <= mid; i++) {
+				s[k] = a[i];
+				k++;
+			}
+		}
+
+		for (int i = left; i <= right; i++)
+			a[i] = s[i];
+
+	}
+
+}

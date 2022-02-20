@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class 달팽이는_올라가고_싶다 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int x, y, z;
+		int q;
+		int re = 0;
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("하루에 올라갈 수 있는 높이, 잘 때 내려오는 높이, 나무 막대기의 길이를 적어주세요.");
+		x = sc.nextInt();
+		y = sc.nextInt();
+		z = sc.nextInt();
+
+		while (true) {
+			z -= x;
+			if (z >=  0) {
+				re++;
+				z += y;
+			}
+			else break;
+		}
+		System.out.println("달팽이가 정상까지 올라가는데 " + re + "일 걸립니다.");
+
+	}
+
+}

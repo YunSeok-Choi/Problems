@@ -1,0 +1,42 @@
+package 브1;
+
+import java.util.Scanner;
+
+public class 설탕배달 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int k = 0;
+
+		while (true) {
+			int x = n % 5;
+			if (n % 5 == 0) {
+				System.out.println((n / 5) + k);
+				break;
+			} else if (x % 3 == 0) {
+				n /= 5;
+				x /= 3;
+				System.out.println(n + x);
+				break;
+			} else if (n % 3 == 0 && n < 13) {
+				System.out.println((n / 3) + k);
+				break;
+			} else if (n < 3) {
+				System.out.println(-1);
+				break;
+			}
+			n -= 5;
+			k++;
+			while (n % 5 != 0 && n >= 3) {
+				n -= 3;
+				k++;
+			}
+
+		}
+
+	}
+
+}

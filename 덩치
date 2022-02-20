@@ -1,0 +1,32 @@
+package 브루트포스;
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int num = Integer.parseInt(br.readLine());
+		int person[][] = new int[num][2];
+		
+		String[] sp;
+		for (int i = 0; i < num; i++) {
+			sp = br.readLine().split(" ");
+			person[i][0] = Integer.parseInt(sp[0]);
+			person[i][1] = Integer.parseInt(sp[1]);			
+		}
+
+		for (int i = 0; i < num; i++) {
+			int rank = 1;
+			for (int j = 0; j < num; j++) {
+				if (person[i][0] < person[j][0] && person[i][1] < person[j][1]) {
+					rank++;
+				}
+			}
+			System.out.println(rank);
+		}
+	}
+
+}

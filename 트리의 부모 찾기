@@ -1,0 +1,48 @@
+package dfs;
+
+import java.util.*;
+
+public class 트리의부모찾기 {
+
+	public static LinkedList<Integer>[] map;
+	public static boolean visit[];
+	public static int n;
+	public static int num[];
+
+	public static void dfs(int x) {
+		visit[x] = true;
+
+		for (int i : map[x]) {
+			if (!visit[i]) {
+				num[i] = x;
+				dfs(i);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+
+		map = new LinkedList[n + 1];
+		num = new int[n + 1];
+		visit = new boolean[n + 1];
+
+		for (int i = 1; i <= n; i++)
+			map[i] = new LinkedList<Integer>();
+
+		for (int i = 1; i < n; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			map[a].add(b);
+			map[b].add(a);
+		}
+
+		dfs(1);
+
+		for (int i = 2; i <= n; i++)
+			System.out.println(num[i]);
+
+	}
+
+}
