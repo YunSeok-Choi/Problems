@@ -1,0 +1,13 @@
+var n = Int(readLine()!)!
+
+while n != 1 {
+    
+    for i in 2...n {
+        if n % i == 0{
+            print(i)
+            n /= i
+            break
+        }
+    }
+    
+}
